@@ -1,0 +1,13 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+*.tmp
+*.log
+
+# Export presets (contains sensitive paths, optional to ignore)
+export_presets.cfg
+
+# Mono/C# specific (if using C#)
+.mono/
+data_*/
+mono_crash.*.json
