@@ -1,6 +1,6 @@
 extends Node3D
 
-const SPAWN_Z = -80.0
+const SPAWN_Z = -180.0
 const DESPAWN_Z = 30.0
 const SPAWN_INTERVAL_Z = 7.0
 
@@ -10,7 +10,7 @@ const RIGHT_X = 14.0
 var _buildings: Array = []
 
 func _ready():
-	for i in range(10):
+	for i in range(26):
 		_spawn_pair(-i * SPAWN_INTERVAL_Z)
 
 func _spawn_pair(z: float):

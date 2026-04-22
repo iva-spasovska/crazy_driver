@@ -1,6 +1,6 @@
 extends Node3D
 
-const SPAWN_Z = -60.0
+const SPAWN_Z = -180.0
 const LANES = [-3.5, 0.0, 3.5]
 const CAR_COLORS = [
 	Color(0.9, 0.2, 0.2),

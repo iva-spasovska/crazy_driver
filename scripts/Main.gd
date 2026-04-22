@@ -6,6 +6,7 @@ extends Node3D
 @onready var start_panel: ColorRect = $CanvasLayer/StartPanel
 @onready var player = $Player
 @onready var traffic_spawner = $TrafficSpawner
+@onready var coin_spawner = $CoinSpawner
 
 var _shop: CanvasLayer = null
 var _was_running: bool = false
@@ -67,6 +68,20 @@ func _start_game():
 	start_panel.hide()
 	game_over_panel.hide()
 	GameManager.start_game()
+	
+	var z = -40.0
+	while z > -170.0:
+		var lanes = [0, 1, 2]
+		lanes.shuffle()
+		traffic_spawner._spawn_car(lanes[0])
+		traffic_spawner.get_children().back().position.z = z
+		z -= randf_range(20.0, 35.0)
+		
+	for i in range(8):
+		var lane = randi_range(0, 2)
+		var count = randi_range(3, 5)
+		for j in range(count):
+			coin_spawner._spawn_coin(lane, -30.0 - i * 20.0 - j * 2.0)
 
 func _on_game_over():
 	game_over_panel.show()

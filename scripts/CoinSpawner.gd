@@ -1,7 +1,7 @@
 extends Node3D
 
 const LANES = [-3.5, 0.0, 3.5]
-const SPAWN_Z = -60.0
+const SPAWN_Z = -180.0
 const COIN_SIZE = 0.4
 
 var _timer: float = 0.0

@@ -40,8 +40,11 @@ func _process(delta: float):
 	position.x = lerp(position.x, target_x, LANE_SWITCH_SPEED * delta)
 
 	# Tilt on lane change
-	var tilt_dir = sign(target_x - position.x)
-	mesh.rotation_degrees.z = lerp(mesh.rotation_degrees.z, -tilt_dir * TILT_AMOUNT, 10.0 * delta)
+	var x_diff = target_x - position.x
+	var tilt_target = 0.0
+	if abs(x_diff) > 0.05:
+		tilt_target = -sign(x_diff) * TILT_AMOUNT
+	mesh.rotation_degrees.z = lerp(mesh.rotation_degrees.z, tilt_target, 10.0 * delta)
 
 	# Collision with traffic — disabled while jumping
 	if not is_jumping:
@@ -67,18 +70,6 @@ func _move_right():
 		target_x = LANES[current_lane]
 		_input_cooldown = 0.15
 
-#func _jump():
-	#is_jumping = true
-	#var tween = create_tween()
-	#tween.set_ease(Tween.EASE_OUT)
-	#tween.set_trans(Tween.TRANS_QUAD)
-	#tween.tween_property(self, "position:y", _base_y + JUMP_HEIGHT, JUMP_DURATION)
-	#tween.set_ease(Tween.EASE_IN)
-	#tween.tween_property(self, "position:y", _base_y, JUMP_DURATION)
-	#tween.tween_callback(func(): is_jumping = false)
-	#tween.tween_property(mesh, "scale", Vector3(1.3, 0.6, 1.3), 0.08)
-	#tween.tween_property(mesh, "scale", Vector3.ONE, 0.15)
-	
 func _jump():
 	is_jumping = true
 
